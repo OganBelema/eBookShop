@@ -8,19 +8,23 @@ class BookRepository(bookDatabase: BookDatabase?) {
 
     private val bookDAO = bookDatabase?.bookDoa()
 
-    lateinit var books: LiveData<List<Book>>
+    private var books: LiveData<List<Book>>? = null
 
 
-    fun getAllBooks(){
+    fun getAllBooks(): LiveData<List<Book>>? {
         if (bookDAO !=  null){
             books = bookDAO.getBooks()
         }
+
+        return books
     }
 
-    fun getBooksInCategory(categoryId: Int){
+    fun getBooksInCategory(categoryId: Int): LiveData<List<Book>>?{
         if (bookDAO != null){
             books = bookDAO.getBooksByCategory(categoryId)
         }
+
+        return books
     }
 
     fun insertBook(book: Book){

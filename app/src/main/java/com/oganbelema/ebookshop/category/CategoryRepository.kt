@@ -8,12 +8,14 @@ class CategoryRepository(bookDatabase: BookDatabase?) {
 
     private val categoryDAO = bookDatabase?.categoryDoa()
 
-    lateinit var categories: LiveData<List<Category>>
+    private var categories: LiveData<List<Category>>? = null
 
-    fun getAllCategories(){
+    fun getAllCategories(): LiveData<List<Category>>? {
         if (categoryDAO != null){
             categories = categoryDAO.getCategories()
         }
+
+        return categories
     }
 
     fun insertCategory(category: Category){

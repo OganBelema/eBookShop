@@ -1,35 +1,28 @@
 package com.oganbelema.ebookshop
 
-import android.content.Context
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
 import com.oganbelema.ebookshop.book.Book
 import com.oganbelema.ebookshop.book.BookRepository
 import com.oganbelema.ebookshop.category.Category
 import com.oganbelema.ebookshop.category.CategoryRepository
 import com.oganbelema.ebookshop.database.BookDatabase
 
-class MainActivityViewModelFactory(context: Context): ViewModelProvider.Factory {
 
-    private val bookDatabase = BookDatabase.getInstance(context)
+class MainActivityViewModel(application: Application): AndroidViewModel(application) {
 
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        return MainActivityViewModel(CategoryRepository(bookDatabase), BookRepository(bookDatabase)) as T
-    }
+    private val bookDatabase = BookDatabase.getInstance(application)
 
-}
+    private val categoryRepository = CategoryRepository(bookDatabase)
 
-class MainActivityViewModel(private val categoryRepository: CategoryRepository,
-                            private val bookRepository: BookRepository): ViewModel() {
+    private val bookRepository = BookRepository(bookDatabase)
 
-    val categories = categoryRepository.categories
-
-    val books = bookRepository.books
 
 
     //region Categories
-    fun getAllCategories(){
-        categoryRepository.getAllCategories()
+    fun getAllCategories(): LiveData<List<Category>>? {
+        return categoryRepository.getAllCategories()
     }
 
     fun addNewCategory(category: Category){
@@ -46,12 +39,12 @@ class MainActivityViewModel(private val categoryRepository: CategoryRepository,
     //endregion
 
     //region Books
-    fun getAllBooks(){
-        bookRepository.getAllBooks()
+    fun getAllBooks(): LiveData<List<Book>>? {
+        return bookRepository.getAllBooks()
     }
 
-    fun getBooksInCategory(categoryId: Int){
-        bookRepository.getBooksInCategory(categoryId)
+    fun getBooksInCategory(categoryId: Int): LiveData<List<Book>>? {
+        return bookRepository.getBooksInCategory(categoryId)
     }
 
     fun addNewBook(book: Book){
