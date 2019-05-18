@@ -19,7 +19,7 @@ abstract class BookDatabase: RoomDatabase() {
     abstract fun bookDoa(): BookDAO
 
     companion object {
-        var INSTANCE: BookDatabase? = null
+        private var INSTANCE: BookDatabase? = null
 
         fun getInstance(context: Context): BookDatabase? {
             if (INSTANCE == null){

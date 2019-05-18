@@ -4,36 +4,40 @@ import androidx.lifecycle.LiveData
 import com.oganbelema.ebookshop.database.BookDatabase
 import org.jetbrains.anko.doAsync
 
-class BookRepository(bookDatabase: BookDatabase) {
+class BookRepository(bookDatabase: BookDatabase?) {
 
-    private val bookDAO = bookDatabase.bookDoa()
+    private val bookDAO = bookDatabase?.bookDoa()
 
     lateinit var books: LiveData<List<Book>>
 
 
     fun getAllBooks(){
-        books = bookDAO.getBooks()
+        if (bookDAO !=  null){
+            books = bookDAO.getBooks()
+        }
     }
 
     fun getBooksInCategory(categoryId: Int){
-        books = bookDAO.getBooksByCategory(categoryId)
+        if (bookDAO != null){
+            books = bookDAO.getBooksByCategory(categoryId)
+        }
     }
 
     fun insertBook(book: Book){
         doAsync {
-            bookDAO.insert(book)
+            bookDAO?.insert(book)
         }
     }
 
     fun updateBook(book: Book){
         doAsync {
-            bookDAO.update(book)
+            bookDAO?.update(book)
         }
     }
 
     fun deleteBook(book: Book){
         doAsync {
-            bookDAO.delete(book)
+            bookDAO?.delete(book)
         }
     }
 
