@@ -3,8 +3,12 @@ package com.oganbelema.ebookshop
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.ArrayAdapter
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.oganbelema.ebookshop.category.Category
+import com.oganbelema.ebookshop.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
@@ -16,8 +20,22 @@ class MainActivity : AppCompatActivity() {
 
         mainActivityViewModel = ViewModelProviders.of(this).get(MainActivityViewModel::class.java)
 
+        val activityMainBinding = DataBindingUtil
+            .setContentView<ActivityMainBinding>(this, R.layout.activity_main)
+
+        val mainActivityClickHandlers = MainActivityClickHandlers()
+
+        activityMainBinding.clickHandlers = mainActivityClickHandlers
+
+        val spinnerAdapter = ArrayAdapter<Category>(this, R.layout.spinner_item)
+
+        spinnerAdapter.setDropDownViewResource(R.layout.spinner_item)
+
+        activityMainBinding.spinnerAdapter = spinnerAdapter
+
         mainActivityViewModel.getAllCategories()?.observe(this, Observer { categories ->
             if (categories  != null){
+                spinnerAdapter.addAll(categories)
                 for(category in categories){
                     Log.i("MainActivity", category.categoryName)
                 }
@@ -42,4 +60,5 @@ class MainActivity : AppCompatActivity() {
             }
         })
     }
+
 }

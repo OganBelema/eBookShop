@@ -2,11 +2,8 @@ package com.oganbelema.ebookshop.category
 
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.ForeignKey
+import androidx.room.*
 import androidx.room.ForeignKey.CASCADE
-import androidx.room.PrimaryKey
 import com.oganbelema.ebookshop.BR
 
 @Entity(tableName = "category_table")
@@ -34,5 +31,10 @@ class Category(categoryName: String, categoryDescription: String) : BaseObservab
     set(value) {
         field = value
         notifyPropertyChanged(BR.categoryDescription)
+    }
+
+    @Ignore
+    override fun toString(): String {
+        return categoryName
     }
 }

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="spinnerAdapter"
+            type="android.widget.ArrayAdapter" />
+
+        <variable
+            name="clickHandlers"
+            type="com.oganbelema.ebookshop.MainActivityClickHandlers" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.AppCompatSpinner
+            android:id="@+id/categorySpinner"
+            android:layout_width="395dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:adapter="@{spinnerAdapter}"
+            android:onItemSelected="@{clickHandlers::onSelectedItem}"
+            android:textSize="20sp"/>
+
+    </LinearLayout>
+</layout>
