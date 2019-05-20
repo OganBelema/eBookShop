@@ -8,6 +8,10 @@
         <variable
             name="clickHandlers"
             type="com.oganbelema.ebookshop.MainActivityClickHandlers" />
+
+        <variable
+            name="bookAdapter"
+            type="com.oganbelema.ebookshop.book.BookAdapter" />
     </data>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -23,6 +27,14 @@
             android:adapter="@{spinnerAdapter}"
             android:onItemSelected="@{clickHandlers::onSelectedItem}"
             android:textSize="20sp"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/booksRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="8dp"
+            android:adapter="@{bookAdapter}"
+            android:background="@color/colorPrimary"/>
 
     </LinearLayout>
 </layout>

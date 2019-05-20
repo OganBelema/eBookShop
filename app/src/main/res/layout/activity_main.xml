@@ -10,6 +10,10 @@
        <variable
            name="clickHandlers"
            type="com.oganbelema.ebookshop.MainActivityClickHandlers" />
+
+        <variable
+            name="bookAdapter"
+            type="com.oganbelema.ebookshop.book.BookAdapter" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -22,6 +26,7 @@
             android:id="@+id/secondaryLayout"
             bind:spinnerAdapter="@{spinnerAdapter}"
             bind:clickHandlers="@{clickHandlers}"
+            bind:bookAdapter="@{bookAdapter}"
             layout="@layout/content_main"/>
 
 
