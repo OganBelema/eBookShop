@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+        <variable
+            name="clickHandler"
+            type="com.oganbelema.ebookshop.AddAndEditActivityClickHandlers" />
+        <variable
+            name="book"
+            type="com.oganbelema.ebookshop.book.Book" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".AddAndEditActivity">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/submitButton"
+            android:layout_width="248dp"
+            android:layout_height="58dp"
+            android:layout_margin="8dp"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:text="@string/submit_button"
+            android:textSize="25sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.866"
+            android:onClick="@{clickHandler::onSubmitButtonClicked}"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/bookNameTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:text="@string/book_name"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintHorizontal_bias="0.06"
+            app:layout_constraintVertical_bias="0.017"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/unitPriceTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:text="@string/unit_price"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            app:layout_constraintHorizontal_bias="0.057"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintVertical_bias="0.3"/>
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/bookNameEditTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:text="@={book.bookName}"
+            android:ems="10"
+            android:inputType="textPersonName"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.162"
+            app:layout_constraintHorizontal_bias="0.052"/>
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/unitPriceEditTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:text="@={book.unitPrice}"
+            android:ems="10"
+            android:inputType="text"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintHorizontal_bias="0.052"
+            app:layout_constraintVertical_bias="0.443"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

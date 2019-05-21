@@ -3,9 +3,13 @@ package com.oganbelema.ebookshop.book
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.oganbelema.ebookshop.BooksDiffCallback
 import com.oganbelema.ebookshop.R
 import com.oganbelema.ebookshop.databinding.BookListItemBinding
+import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.uiThread
 
 class BookAdapter : RecyclerView.Adapter<BookAdapter.BookViewHolder>() {
 
@@ -15,15 +19,20 @@ class BookAdapter : RecyclerView.Adapter<BookAdapter.BookViewHolder>() {
 
     var onItemClickListener: OnItemClickListener? = null
 
-    private val books = ArrayList<Book>(0)
+    private var _books = ArrayList<Book>(0)
+
+    val books: List<Book>
+    get() = _books
 
     fun addBooks(books: List<Book>){
-        this.books.addAll(books)
-        notifyDataSetChanged()
-    }
+        //this._books.addAll(books)
+        //notifyDataSetChanged()
 
-    fun clearBooks(){
-        books.clear()
+        doAsync {
+            val diffUtilResult = DiffUtil.calculateDiff(BooksDiffCallback(_books, books), false)
+            _books = books as ArrayList<Book>
+            diffUtilResult.dispatchUpdatesTo(this@BookAdapter)
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BookViewHolder {
@@ -31,10 +40,10 @@ class BookAdapter : RecyclerView.Adapter<BookAdapter.BookViewHolder>() {
             R.layout.book_list_item, parent, false))
     }
 
-    override fun getItemCount(): Int = books.size
+    override fun getItemCount(): Int = _books.size
 
     override fun onBindViewHolder(holder: BookViewHolder, position: Int) {
-        holder.bindBookData(books[position])
+        holder.bindBookData(_books[position])
     }
 
     inner class BookViewHolder(private val bookListItemBinding: BookListItemBinding):
@@ -44,7 +53,7 @@ class BookAdapter : RecyclerView.Adapter<BookAdapter.BookViewHolder>() {
             bookListItemBinding.root.setOnClickListener {
 
                 if (adapterPosition != RecyclerView.NO_POSITION && onItemClickListener != null){
-                    val book = books[adapterPosition]
+                    val book = _books[adapterPosition]
                     onItemClickListener?.onItemClick(book)
                 }
             }

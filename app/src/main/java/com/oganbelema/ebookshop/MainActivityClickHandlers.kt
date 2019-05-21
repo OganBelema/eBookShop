@@ -1,5 +1,6 @@
 package com.oganbelema.ebookshop
 
+import android.content.Intent
 import android.util.Log
 import android.view.View
 import android.widget.AdapterView
@@ -8,11 +9,18 @@ import androidx.lifecycle.Observer
 import com.oganbelema.ebookshop.book.BookAdapter
 import com.oganbelema.ebookshop.category.Category
 
-class MainActivityClickHandlers(private val mainActivityViewModel: MainActivityViewModel,
+class MainActivityClickHandlers(private val activity: MainActivity,
+                                private val mainActivityViewModel: MainActivityViewModel,
                                 private val lifecycleOwner: LifecycleOwner,
                                 private val bookAdapter: BookAdapter) {
 
+    lateinit var selectedCategory: Category
+
     fun onFloatingActionButtonClicked(view: View){
+
+        val intent = Intent(activity, AddAndEditActivity::class.java)
+        activity.startActivityForResult(intent, ADD_BOOK_REQUEST_CODE)
+
         Log.d(MainActivityClickHandlers::class.simpleName, "Fab button clicked")
     }
 
@@ -21,7 +29,7 @@ class MainActivityClickHandlers(private val mainActivityViewModel: MainActivityV
         if (position <= -1)
             return
 
-        val selectedCategory = parent.getItemAtPosition(position) as Category
+        selectedCategory = parent.getItemAtPosition(position) as Category
 
         loadBooksInSelectedCategory(selectedCategory.id)
 
@@ -32,7 +40,6 @@ class MainActivityClickHandlers(private val mainActivityViewModel: MainActivityV
         mainActivityViewModel.getBooksInCategory(bookCategoryId)?.observe(lifecycleOwner, Observer { books ->
 
             if (books != null){
-                bookAdapter.clearBooks()
                 bookAdapter.addBooks(books)
             }
         })

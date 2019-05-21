@@ -2,12 +2,10 @@ package com.oganbelema.ebookshop.book
 
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.ForeignKey
-import androidx.room.PrimaryKey
+import androidx.room.*
 import com.oganbelema.ebookshop.BR
 import com.oganbelema.ebookshop.category.Category
+import java.util.*
 
 @Entity(tableName = "books_table",  foreignKeys = [ForeignKey(entity = Category::class, parentColumns = ["id"],
     childColumns = ["category_id"], onDelete = ForeignKey.CASCADE)])
@@ -44,6 +42,18 @@ class Book(bookName: String, unitPrice: String, categoryId: Int) : BaseObservabl
     set(value) {
         field = value
         notifyPropertyChanged(BR.categoryId)
+    }
+
+    @Ignore
+    override fun hashCode(): Int {
+        return Objects.hash(bookId, bookName, unitPrice, categoryId)
+    }
+
+    @Ignore
+    override fun equals(other: Any?): Boolean {
+        if (other !is Book) return false
+        return bookId == other.bookId && categoryId == other.categoryId
+                && bookName == other.bookName && unitPrice == other.unitPrice
     }
 
 }
