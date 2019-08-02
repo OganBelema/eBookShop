@@ -15,7 +15,7 @@ class BooksDiffCallback(private val oldBookList: List<Book>, private val newBook
     override fun getNewListSize(): Int = newBookList.size
 
     override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-        return oldBookList[oldItemPosition].equals(newBookList[newItemPosition].bookId)
+        return oldBookList[oldItemPosition].equals(newBookList[newItemPosition])
     }
 
 }

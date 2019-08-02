@@ -19,7 +19,7 @@ class BookAdapter : RecyclerView.Adapter<BookAdapter.BookViewHolder>() {
 
     var onItemClickListener: OnItemClickListener? = null
 
-    private var _books = ArrayList<Book>(0)
+    private var _books: List<Book> = ArrayList(0)
 
     val books: List<Book>
     get() = _books
@@ -30,7 +30,7 @@ class BookAdapter : RecyclerView.Adapter<BookAdapter.BookViewHolder>() {
 
         doAsync {
             val diffUtilResult = DiffUtil.calculateDiff(BooksDiffCallback(_books, books), false)
-            _books = books as ArrayList<Book>
+            _books = books
             diffUtilResult.dispatchUpdatesTo(this@BookAdapter)
         }
     }
