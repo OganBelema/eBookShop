@@ -3,10 +3,9 @@ package com.oganbelema.ebookshop.category
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 import androidx.room.*
-import androidx.room.ForeignKey.CASCADE
 import com.oganbelema.ebookshop.BR
 
-@Entity(tableName = "category_table")
+@Entity(tableName = "category_table", indices = [Index("id")])
 class Category(categoryName: String, categoryDescription: String) : BaseObservable() {
 
     @PrimaryKey(autoGenerate = true)

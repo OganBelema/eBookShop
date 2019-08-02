@@ -11,7 +11,7 @@ import com.oganbelema.ebookshop.category.Category
 import com.oganbelema.ebookshop.category.CategoryDAO
 import org.jetbrains.anko.doAsync
 
-@Database(entities = [Category::class, Book::class], version = 1)
+@Database(entities = [Category::class, Book::class], version = 1, exportSchema = false)
 abstract class BookDatabase: RoomDatabase() {
 
     abstract fun categoryDoa(): CategoryDAO

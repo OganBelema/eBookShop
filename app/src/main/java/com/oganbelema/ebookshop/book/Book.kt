@@ -8,7 +8,8 @@ import com.oganbelema.ebookshop.category.Category
 import java.util.*
 
 @Entity(tableName = "books_table",  foreignKeys = [ForeignKey(entity = Category::class, parentColumns = ["id"],
-    childColumns = ["category_id"], onDelete = ForeignKey.CASCADE)])
+    childColumns = ["category_id"], onDelete = ForeignKey.CASCADE)], indices = [Index("category_id")]
+)
 class Book(bookName: String, unitPrice: String, categoryId: Int) : BaseObservable() {
 
     @Bindable
