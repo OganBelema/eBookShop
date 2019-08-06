@@ -4,14 +4,12 @@ import android.content.Intent
 import android.util.Log
 import android.view.View
 import android.widget.AdapterView
-import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import com.oganbelema.ebookshop.book.BookAdapter
 import com.oganbelema.ebookshop.category.Category
 
 class MainActivityClickHandlers(private val activity: MainActivity,
                                 private val mainActivityViewModel: MainActivityViewModel,
-                                private val lifecycleOwner: LifecycleOwner,
                                 private val bookAdapter: BookAdapter) {
 
     lateinit var selectedCategory: Category
@@ -37,7 +35,7 @@ class MainActivityClickHandlers(private val activity: MainActivity,
     }
 
     private fun loadBooksInSelectedCategory(bookCategoryId: Int){
-        mainActivityViewModel.getBooksInCategory(bookCategoryId)?.observe(lifecycleOwner, Observer { books ->
+        mainActivityViewModel.getBooksInCategory(bookCategoryId)?.observe(activity, Observer { books ->
 
             if (books != null){
                 bookAdapter.addBooks(books)

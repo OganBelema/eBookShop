@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity() {
 
         }
 
-        mainActivityClickHandlers = MainActivityClickHandlers(this, mainActivityViewModel, this, bookAdapter)
+        mainActivityClickHandlers = MainActivityClickHandlers(this, mainActivityViewModel, bookAdapter)
 
         activityMainBinding.clickHandlers = mainActivityClickHandlers
 
