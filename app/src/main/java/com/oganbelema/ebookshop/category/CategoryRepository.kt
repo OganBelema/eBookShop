@@ -3,8 +3,11 @@ package com.oganbelema.ebookshop.category
 import androidx.lifecycle.LiveData
 import com.oganbelema.ebookshop.database.BookDatabase
 import org.jetbrains.anko.doAsync
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class CategoryRepository(bookDatabase: BookDatabase?) {
+@Singleton
+class CategoryRepository @Inject constructor(bookDatabase: BookDatabase?) {
 
     private val categoryDAO = bookDatabase?.categoryDoa()
 

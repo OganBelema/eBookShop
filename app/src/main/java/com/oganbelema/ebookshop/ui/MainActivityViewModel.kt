@@ -1,22 +1,16 @@
-package com.oganbelema.ebookshop
+package com.oganbelema.ebookshop.ui
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.ViewModel
 import com.oganbelema.ebookshop.book.Book
 import com.oganbelema.ebookshop.book.BookRepository
 import com.oganbelema.ebookshop.category.Category
 import com.oganbelema.ebookshop.category.CategoryRepository
-import com.oganbelema.ebookshop.database.BookDatabase
+import javax.inject.Inject
 
 
-class MainActivityViewModel(application: Application): AndroidViewModel(application) {
-
-    private val bookDatabase = BookDatabase.getInstance(application)
-
-    private val categoryRepository = CategoryRepository(bookDatabase)
-
-    private val bookRepository = BookRepository(bookDatabase)
+class MainActivityViewModel @Inject constructor(private val bookRepository: BookRepository,
+                            private val categoryRepository: CategoryRepository): ViewModel() {
 
 
 

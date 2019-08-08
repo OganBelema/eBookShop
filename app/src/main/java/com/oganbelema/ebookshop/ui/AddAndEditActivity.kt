@@ -1,8 +1,9 @@
-package com.oganbelema.ebookshop
+package com.oganbelema.ebookshop.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
+import com.oganbelema.ebookshop.R
 import com.oganbelema.ebookshop.book.Book
 import com.oganbelema.ebookshop.databinding.ActivityAddAndEditBinding
 
@@ -25,7 +26,8 @@ class AddAndEditActivity : AppCompatActivity() {
         val activityAddAndEditBinding = DataBindingUtil
             .setContentView<ActivityAddAndEditBinding>(this, R.layout.activity_add_and_edit)
 
-        val addAndEditActivityClickHandlers = AddAndEditActivityClickHandlers(this, book, this)
+        val addAndEditActivityClickHandlers =
+            AddAndEditActivityClickHandlers(this, book, this)
 
         activityAddAndEditBinding.book = book
 

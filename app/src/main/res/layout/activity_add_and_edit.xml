@@ -4,7 +4,7 @@
     <data>
         <variable
             name="clickHandler"
-            type="com.oganbelema.ebookshop.AddAndEditActivityClickHandlers" />
+            type="com.oganbelema.ebookshop.ui.AddAndEditActivityClickHandlers" />
         <variable
             name="book"
             type="com.oganbelema.ebookshop.book.Book" />
@@ -15,7 +15,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".AddAndEditActivity">
+        tools:context=".ui.AddAndEditActivity">
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/submitButton"

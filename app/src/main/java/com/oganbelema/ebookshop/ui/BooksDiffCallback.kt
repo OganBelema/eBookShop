@@ -1,4 +1,4 @@
-package com.oganbelema.ebookshop
+package com.oganbelema.ebookshop.ui
 
 import androidx.recyclerview.widget.DiffUtil
 import com.oganbelema.ebookshop.book.Book

@@ -9,7 +9,7 @@
             type="android.widget.ArrayAdapter" />
        <variable
            name="clickHandlers"
-           type="com.oganbelema.ebookshop.MainActivityClickHandlers" />
+           type="com.oganbelema.ebookshop.ui.MainActivityClickHandlers" />
 
         <variable
             name="bookAdapter"
@@ -19,7 +19,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".MainActivity">
+        tools:context=".ui.MainActivity">
 
 
         <include
