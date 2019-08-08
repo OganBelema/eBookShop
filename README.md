@@ -11,4 +11,5 @@ RecyclerView, two way data binding
 - DiffUtil for updating data in recyclerview
 - Room for data persistence with Room.callback to populate database with seed data when it is first created
 - Livedata for observing data changes
+- Dependency injection with dagger 2 including bindings for ViewModels
 
