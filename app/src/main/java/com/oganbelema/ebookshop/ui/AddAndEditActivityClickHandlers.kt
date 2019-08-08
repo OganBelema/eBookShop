@@ -1,4 +1,4 @@
-package com.oganbelema.ebookshop
+package com.oganbelema.ebookshop.ui
 
 import android.content.Context
 import android.content.Intent
@@ -9,7 +9,8 @@ import com.oganbelema.ebookshop.book.Book
 
 class AddAndEditActivityClickHandlers(private val context: Context,
                                       private val book: Book,
-                                      private val activity: AddAndEditActivity) {
+                                      private val activity: AddAndEditActivity
+) {
 
     fun onSubmitButtonClicked(view: View){
         if (book.bookName.isEmpty()){

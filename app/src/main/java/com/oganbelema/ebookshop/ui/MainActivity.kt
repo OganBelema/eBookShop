@@ -1,4 +1,4 @@
-package com.oganbelema.ebookshop
+package com.oganbelema.ebookshop.ui
 
 import android.app.Activity
 import android.content.Intent
@@ -12,16 +12,16 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.oganbelema.ebookshop.EBookShopApp
+import com.oganbelema.ebookshop.R
 import com.oganbelema.ebookshop.book.Book
 import com.oganbelema.ebookshop.book.BookAdapter
 import com.oganbelema.ebookshop.category.Category
 import com.oganbelema.ebookshop.databinding.ActivityMainBinding
+import com.oganbelema.ebookshop.di.ViewModelFactory
+import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
-
-    private val mainActivityViewModel: MainActivityViewModel by lazy {
-        ViewModelProviders.of(this).get(MainActivityViewModel::class.java)
-    }
 
     val bookAdapter = BookAdapter()
 
@@ -29,12 +29,21 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var selectedCategory: Category
 
+    @Inject
+    lateinit var mainActivityViewModelFactory: ViewModelFactory
+
+    private val mainActivityViewModel: MainActivityViewModel by lazy {
+        ViewModelProviders.of(this, mainActivityViewModelFactory).get(MainActivityViewModel::class.java)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         val activityMainBinding = DataBindingUtil
             .setContentView<ActivityMainBinding>(this, R.layout.activity_main)
+
+        (applicationContext as EBookShopApp).appComponent.inject(this)
 
         bookAdapter.onItemClickListener = object: BookAdapter.OnItemClickListener {
             override fun onItemClick(book: Book) {
@@ -47,7 +56,8 @@ class MainActivity : AppCompatActivity() {
 
         }
 
-        mainActivityClickHandlers = MainActivityClickHandlers(this, mainActivityViewModel, bookAdapter)
+        mainActivityClickHandlers =
+            MainActivityClickHandlers(this, mainActivityViewModel, bookAdapter)
 
         activityMainBinding.clickHandlers = mainActivityClickHandlers
 

@@ -1,4 +1,4 @@
-package com.oganbelema.ebookshop
+package com.oganbelema.ebookshop.ui
 
 import android.content.Intent
 import android.util.Log

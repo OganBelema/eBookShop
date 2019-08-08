@@ -5,11 +5,10 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.oganbelema.ebookshop.BooksDiffCallback
+import com.oganbelema.ebookshop.ui.BooksDiffCallback
 import com.oganbelema.ebookshop.R
 import com.oganbelema.ebookshop.databinding.BookListItemBinding
 import org.jetbrains.anko.doAsync
-import org.jetbrains.anko.uiThread
 
 class BookAdapter : RecyclerView.Adapter<BookAdapter.BookViewHolder>() {
 

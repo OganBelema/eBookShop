@@ -3,8 +3,11 @@ package com.oganbelema.ebookshop.book
 import androidx.lifecycle.LiveData
 import com.oganbelema.ebookshop.database.BookDatabase
 import org.jetbrains.anko.doAsync
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class BookRepository(bookDatabase: BookDatabase?) {
+@Singleton
+class BookRepository @Inject constructor(bookDatabase: BookDatabase?) {
 
     private val bookDAO = bookDatabase?.bookDoa()
 
